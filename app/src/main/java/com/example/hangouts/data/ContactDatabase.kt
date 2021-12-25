@@ -2,15 +2,16 @@ package com.example.hangouts.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.hangouts.data.data_source.ContactDao
 import com.example.hangouts.domain.models.Contact
 
 @Database(
     entities = [
         Contact::class,
-    ], version = ApplicationDatabase.DB_VERSION
+    ], version = ContactDatabase.DB_VERSION
 )
 
-abstract class ApplicationDatabase : RoomDatabase(){
+abstract class ContactDatabase : RoomDatabase(){
     abstract fun ContactDao(): ContactDao
 
     companion object {
