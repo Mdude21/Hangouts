@@ -33,8 +33,8 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
 
         val button: Button = view.findViewById(R.id.fragmentEditContactButtonSave)
         button.setOnClickListener {
-            var contact: Contact
-            contact.address = binding.fragmentEditContactAddress.text.toString()
+//            var contact: Contact
+//            contact.address = binding.fragmentEditContactAddress.text.toString()
 
         }
     }
