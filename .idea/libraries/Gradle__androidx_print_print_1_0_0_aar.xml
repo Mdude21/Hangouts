@@ -1,12 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.print:print:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar:///goinfre/mdude/.gradle/caches/transforms-3/64b40f86ad418a55531931148e4a58e7/transformed/print-1.0.0/annotations.zip!/" />
+      <root url="jar:///goinfre/mdude/.gradle/caches/transforms-3/3b49345ccd02ba6ef5ebd19165afcc85/transformed/print-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar:///goinfre/mdude/.gradle/caches/transforms-3/64b40f86ad418a55531931148e4a58e7/transformed/print-1.0.0/jars/classes.jar!/" />
       <root url="file:///goinfre/mdude/.gradle/caches/transforms-3/64b40f86ad418a55531931148e4a58e7/transformed/print-1.0.0/res" />
-      <root url="file:///goinfre/mdude/.gradle/caches/transforms-3/64b40f86ad418a55531931148e4a58e7/transformed/print-1.0.0/AndroidManifest.xml" />
+      <root url="file:///goinfre/mdude/.gradle/caches/transforms-3/3b49345ccd02ba6ef5ebd19165afcc85/transformed/print-1.0.0/res" />
+      <root url="file:///goinfre/mdude/.gradle/caches/transforms-3/3b49345ccd02ba6ef5ebd19165afcc85/transformed/print-1.0.0/AndroidManifest.xml" />
+      <root url="jar:///goinfre/mdude/.gradle/caches/transforms-3/3b49345ccd02ba6ef5ebd19165afcc85/transformed/print-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

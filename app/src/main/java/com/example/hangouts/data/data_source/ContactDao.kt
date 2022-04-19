@@ -10,8 +10,8 @@ interface ContactDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertContact(contact: Contact)
 
-    @Query("SELECT * FROM ${ContactContract.TABLE_NAME}")
-    fun getContacts(): Flow<List<Contact>>
+    @Query("SELECT * FROM ${ContactContract.TABLE_NAME} ORDER BY ${ContactContract.Columns.FIRSTNAME} ASC")
+    suspend fun getContacts(): List<Contact>
 
     @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE id = :id")
     suspend fun getContactById(id: Long): Contact?

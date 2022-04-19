@@ -1,14 +1,16 @@
 package com.example.hangouts.data.repository
 
+import com.example.hangouts.data.DataBase
 import com.example.hangouts.data.data_source.ContactDao
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.domain.repository.ContactRepository
 import kotlinx.coroutines.flow.Flow
 
-class ContactRepositoryImpl(
-    private val dao: ContactDao
-) : ContactRepository{
-    override fun getContacts(): Flow<List<Contact>> {
+class ContactRepositoryImpl() : ContactRepository{
+
+    private val dao = DataBase.instance.ContactDao()
+
+    override suspend fun getContacts(): List<Contact> {
         return dao.getContacts()
     }
 

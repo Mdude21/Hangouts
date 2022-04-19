@@ -13,13 +13,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="-793" />
+                            <option name="y" value="-468" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_addContactFragment_to_listFragment">
+                            <entry key="action_addContactFragment_to_listContactFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -34,30 +34,30 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="500" />
-                            <option name="y" value="12" />
+                            <option name="x" value="124" />
+                            <option name="y" value="289" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="listFragment">
+                  <entry key="listContactFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="x" value="-774" />
+                            <option name="y" value="189" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_listFragment_to_addContactFragment">
+                            <entry key="action_listContactFragment_to_addContactFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_listFragment_to_infoContactFragment">
+                            <entry key="action_listContactFragment_to_infoContactFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

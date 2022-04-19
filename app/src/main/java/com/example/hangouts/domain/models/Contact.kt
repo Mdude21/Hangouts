@@ -3,6 +3,7 @@ package com.example.hangouts.domain.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(
     tableName = ContactContract.TABLE_NAME
@@ -24,4 +25,4 @@ data class Contact(
     var address: String?,
     @ColumnInfo(name = ContactContract.Columns.AVATAR)
     var avatar: String?
-)
+) : Serializable

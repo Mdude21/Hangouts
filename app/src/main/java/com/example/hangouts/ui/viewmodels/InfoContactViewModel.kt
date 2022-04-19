@@ -6,12 +6,13 @@ import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import kotlinx.coroutines.launch
 
-class AddContactViewModel : ViewModel() {
+class InfoContactViewModel : ViewModel() {
     private val repository = ContactRepositoryImpl()
 
-    fun addContact(contact : Contact) {
+    fun deleteContact(contact: Contact) {
         viewModelScope.launch {
-            repository.insertContact(contact)
+            repository.deleteContact(contact)
         }
+
     }
 }

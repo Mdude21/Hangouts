@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +11,8 @@
         android:layout_width="313dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:hint="@string/email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragmentEditContactFirstName"
         app:layout_constraintVertical_bias="0.041" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/editContactAvatarImageButton"
         android:layout_width="122dp"
         android:layout_height="124dp"
@@ -76,15 +77,16 @@
         android:layout_width="313dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        android:hint="@string/phone_numbe"
+        android:hint="@string/phone_number"
+        android:inputType="number"
         android:ems="10"
-        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editContactAvatarImageButton"
         app:layout_constraintTop_toBottomOf="@+id/editContactAvatarImageButton"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintVertical_bias="0.007"
+        tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/fragmentEditContactButtonSave"

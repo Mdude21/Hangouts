@@ -7,8 +7,4 @@ import kotlinx.coroutines.flow.Flow
 class GetContactUseCase(
     private val repository: ContactRepository
 ) {
-
-    operator fun invoke(): Flow<List<Contact>> {
-
-    }
 }
