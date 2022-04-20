@@ -2,14 +2,12 @@ package com.example.hangouts.ui.fragments.list
 
 import android.annotation.SuppressLint
 import android.view.*
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hangouts.R
 import com.example.hangouts.domain.models.Contact
-import com.example.hangouts.domain.models.DisplayContactItem
 
 class ListContactAdapter() :
     RecyclerView.Adapter<ListContactAdapter.ContactViewHolder>() {
@@ -48,7 +46,7 @@ class ListContactAdapter() :
 //            val itemAvatar = findViewById<ImageView>(R.id.itemContactsAvatar)
 
             itemName.text = contact.firstName + " " + contact.lastName
-            itemText.text = contact.phoneNumber
+            itemText.text = contact.phoneNumber.toString()
 
             setOnClickListener{
                 onItemClickListener?.let { it(contact) }

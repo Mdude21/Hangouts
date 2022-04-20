@@ -13,8 +13,8 @@ interface ContactDao {
     @Query("SELECT * FROM ${ContactContract.TABLE_NAME} ORDER BY ${ContactContract.Columns.FIRSTNAME} ASC")
     suspend fun getContacts(): List<Contact>
 
-    @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE id = :id")
-    suspend fun getContactById(id: Long): Contact?
+//    @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE id = :id")
+//    suspend fun getContactById(id: Long): Contact?
 
     @Delete
     suspend fun deleteContact(contact: Contact)

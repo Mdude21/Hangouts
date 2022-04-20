@@ -12,7 +12,7 @@ import java.io.Serializable
 data class Contact(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = ContactContract.Columns.ID)
-    var id: Long,
+    var id : Long?,
     @ColumnInfo(name = ContactContract.Columns.PHONE)
     var phoneNumber: String?,
     @ColumnInfo(name = ContactContract.Columns.FIRSTNAME)

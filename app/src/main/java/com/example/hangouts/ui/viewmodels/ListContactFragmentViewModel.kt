@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.domain.models.Contact
-import com.example.hangouts.domain.models.DisplayContactItem
 import kotlinx.coroutines.launch
 
 class ListContactFragmentViewModel : ViewModel(){

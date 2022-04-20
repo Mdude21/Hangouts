@@ -33,5 +33,8 @@
         <action
             android:id="@+id/action_infoContactFragment_to_listContactFragment"
             app:destination="@id/listContactFragment" />
+        <action
+            android:id="@+id/action_infoContactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
     </fragment>
 </navigation>

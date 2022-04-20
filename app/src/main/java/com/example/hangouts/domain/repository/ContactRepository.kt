@@ -7,7 +7,7 @@ interface ContactRepository {
 
     suspend fun getContacts() : List<Contact>
 
-    suspend fun getContactById(id: Long) : Contact?
+//    suspend fun getContactById(id: Long) : Contact?
 
     suspend fun insertContact(contact: Contact)
 
