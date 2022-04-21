@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.hangouts.R
 import com.example.hangouts.databinding.FragmentInfoContactBinding
 import com.example.hangouts.ui.viewmodels.InfoContactViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
     private lateinit var binding: FragmentInfoContactBinding
@@ -40,10 +41,11 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
             infoContactFirstName.text = contact.firstName
             infoContactLastName.text = contact.lastName
             infoContactEmail.text = contact.email
-            infoContactPhoneNubmer.text = contact.phoneNumber.toString()
+            infoContactPhoneNumber.text = contact.phoneNumber.toString()
 
             infoContactDeleteButton.setOnClickListener {
                 viewModel.deleteContact(contact)
+                Snackbar.make(view,"Contact is deleted", Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_infoContactFragment_to_listContactFragment)
             }
 
@@ -56,6 +58,10 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
 
             infoContactCallButton.setOnClickListener {
                 call(contact.phoneNumber.toString())
+            }
+
+            infoContactSMSButton.setOnClickListener {
+                findNavController().navigate(R.id.action_infoContactFragment_to_SMSFragment)
             }
         }
     }

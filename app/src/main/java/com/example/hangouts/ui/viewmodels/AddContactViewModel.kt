@@ -11,18 +11,12 @@ import kotlinx.coroutines.launch
 class AddContactViewModel : ViewModel() {
     private val repository = ContactRepositoryImpl()
 
-    private val _inputValidData = MutableLiveData<Boolean>()
-
-    val inputValidData : LiveData<Boolean>
-        get() = _inputValidData
-
     fun addContact(contact : Contact) {
         viewModelScope.launch {
             repository.insertContact(contact)
         }
     }
 
-//    fun isValidPhoneNumber()
 
 
 }

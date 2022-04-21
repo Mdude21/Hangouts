@@ -36,5 +36,12 @@
         <action
             android:id="@+id/action_infoContactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_infoContactFragment_to_SMSFragment"
+            app:destination="@id/SMSFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/SMSFragment"
+        android:name="com.example.hangouts.ui.fragments.SMSFragment"
+        android:label="SMSFragment" />
 </navigation>

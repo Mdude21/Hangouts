@@ -14,6 +14,7 @@ import com.example.hangouts.R
 import com.example.hangouts.databinding.FragmentAddContactBinding
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.ui.viewmodels.AddContactViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
@@ -69,6 +70,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                     contact?.lastName = fragmentEditContactLastName.text.toString()
                 }
                 viewModel.addContact(contact!!)
+                Snackbar.make(view,"Contact is added", Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addContactFragment_to_listContactFragment)
             }
         }

@@ -23,5 +23,11 @@ class ListContactFragmentViewModel : ViewModel(){
         }
     }
 
+    fun addContactFromContactList(contact : Contact) {
+        viewModelScope.launch {
+            repository.insertContact(contact)
+        }
+    }
+
 
 }
