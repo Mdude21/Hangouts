@@ -39,7 +39,8 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        readContact()
+//        if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+            readContact()
 
         listAdapter = ListContactAdapter()
         viewModel.getContactsFromDb()
@@ -75,13 +76,13 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
 
     private fun readContact() {
 
-        var cols = listOf<String>(
+        val cols = listOf<String>(
             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
             ContactsContract.CommonDataKinds.Phone.NUMBER,
             ContactsContract.CommonDataKinds.Phone._ID
         ).toTypedArray()
 
-        var rs = activity!!.contentResolver.query(
+        val rs = activity!!.contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             cols, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
 

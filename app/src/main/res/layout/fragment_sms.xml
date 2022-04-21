@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/smsRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@android:color/darker_gray"
+        tools:listitem="@layout/item_input_sms" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +22,7 @@
             android:id="@+id/inputTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="@string/message"
             android:layout_weight="1"/>
 
         <ImageButton
