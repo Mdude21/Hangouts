@@ -24,5 +24,5 @@ data class Contact(
     @ColumnInfo(name = ContactContract.Columns.ADDRESS)
     var address: String?,
     @ColumnInfo(name = ContactContract.Columns.AVATAR)
-    var avatar: String?
+    var avatar: String?,
 ) : Serializable

@@ -1,6 +1,8 @@
 package com.example.hangouts.ui
 
 import android.Manifest
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -28,6 +30,26 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
         else
             readContact()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+
+        val time = sh.getLong("Time", 1L)
+        if (time > 0) {
+            val newTime = (System.currentTimeMillis() - time) / 1000
+            Toast.makeText(this, "you were absent for $newTime second", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+
+        myEdit.putLong("Time", System.currentTimeMillis())
+        myEdit.apply()
     }
 
     private fun readContact() {

@@ -1,5 +1,6 @@
 package com.example.hangouts.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hangouts.R
+import com.example.hangouts.databinding.ItemInputSmsBinding
+import com.example.hangouts.databinding.ItemOutputSmsBinding
 import com.example.hangouts.domain.models.Message
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,78 +18,71 @@ import java.util.*
 private const val VIEW_TYPE_MY_MESSAGE = 1
 private const val VIEW_TYPE_OTHER_MESSAGE = 2
 
-class SMSAdapter(val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
+class SMSAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val messages: ArrayList<Message> = ArrayList()
+    private val messages = mutableListOf<Message>()
 
     fun addMessage(message: Message) {
         messages.add(message)
         notifyDataSetChanged()
     }
 
-    inner class MyMessageViewHolder(view: View) : MessageViewHolder(view) {
-        private var messageText: TextView = view.findViewById(R.id.txtMyMessage)
-        private var timeText: TextView = view.findViewById(R.id.txtMyMessageTime)
-
-        override fun bind(message: Message) {
-            messageText.text = message.message
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
-        }
-    }
-
-    inner class OtherMessageViewHolder(view: View) : MessageViewHolder(view) {
-        private var messageText: TextView = view.findViewById(R.id.txtOtherMessage)
-        private var userText: TextView = view.findViewById(R.id.txtOtherUser)
-        private var timeText: TextView = view.findViewById(R.id.txtOtherMessageTime)
-
-        override fun bind(message: Message) {
-            messageText.text = message.message
-            userText.text = message.user
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
-        }
-    }
-
     override fun getItemViewType(position: Int): Int {
-        val message = messages[position]
-
-        return if (message.type == 1) {
+        return if (messages[position].type == 1)
             VIEW_TYPE_MY_MESSAGE
-        } else {
+        else
             VIEW_TYPE_OTHER_MESSAGE
-        }
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        return if(viewType == VIEW_TYPE_MY_MESSAGE) {
-            MyMessageViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.item_output_sms, parent, false)
-            )
-        } else {
-            OtherMessageViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.item_input_sms, parent, false)
-            )
+    @SuppressLint("NotifyDataSetChanged")
+    fun update() {
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        val bindingMyMessageViewHolder: ItemInputSmsBinding = ItemInputSmsBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        val bindingOtherMessageViewHolder: ItemOutputSmsBinding = ItemOutputSmsBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+
+        return when (viewType) {
+            VIEW_TYPE_MY_MESSAGE -> MyMessageViewHolder(bindingMyMessageViewHolder)
+            VIEW_TYPE_OTHER_MESSAGE -> OtherMessageViewHolder(bindingOtherMessageViewHolder)
+            else -> throw error("Unknown view type")
         }
     }
 
-    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        val message = messages[position]
-
-        holder.bind(message)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is MyMessageViewHolder -> holder.bind(messages[position])
+            is OtherMessageViewHolder -> holder.bind(messages[position])
+            else -> error("Unknown view holder")
+        }
     }
 
     override fun getItemCount(): Int = messages.size
 }
 
+class MyMessageViewHolder(private val binding: ItemInputSmsBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-open class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(message: Message) {}
+    fun bind(message: Message) {
+        binding.txtMyMessage.text = message.message
+        binding.txtMyMessageTime.text = com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
+    }
+}
 
+class OtherMessageViewHolder(private val binding: ItemOutputSmsBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    object DateUtils {
-        fun fromMillisToTimeString(millis: Long): String {
-            val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
-            return format.format(millis)
+    fun bind(message: Message) {
+        with(binding) {
+            txtOtherMessage.text = message.message
+            txtOtherMessageTime.text = com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
+            txtOtherUser.text = message.user
         }
     }
 }
