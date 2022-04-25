@@ -43,5 +43,9 @@
     <fragment
         android:id="@+id/SMSFragment"
         android:name="com.example.hangouts.ui.fragments.SMSFragment"
-        android:label="SMSFragment" />
+        android:label="SMSFragment" >
+        <argument
+            android:name="contact"
+            app:argType="com.example.hangouts.domain.models.Contact" />
+    </fragment>
 </navigation>

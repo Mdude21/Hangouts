@@ -24,7 +24,7 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
 
     private lateinit var binding: FragmentListBinding
     private val viewModel : ListContactFragmentViewModel by viewModels()
-    lateinit var listAdapter : ListContactAdapter
+    private lateinit var listAdapter : ListContactAdapter
 
 
     override fun onCreateView(

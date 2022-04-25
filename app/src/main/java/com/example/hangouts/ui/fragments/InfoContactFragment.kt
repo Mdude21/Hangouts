@@ -61,7 +61,10 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
             }
 
             infoContactSMSButton.setOnClickListener {
-                findNavController().navigate(R.id.action_infoContactFragment_to_SMSFragment)
+                val bundle = Bundle().apply {
+                    putSerializable("contact", contact)
+                }
+                findNavController().navigate(R.id.action_infoContactFragment_to_SMSFragment, bundle)
             }
         }
     }

@@ -20,10 +20,15 @@ private const val VIEW_TYPE_OTHER_MESSAGE = 2
 
 class SMSAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val messages = mutableListOf<Message>()
+    private var messages = mutableListOf<Message>()
 
     fun addMessage(message: Message) {
         messages.add(message)
+        notifyDataSetChanged()
+    }
+
+    fun addList(newMessages: List<Message>){
+        messages = newMessages as MutableList<Message>
         notifyDataSetChanged()
     }
 
