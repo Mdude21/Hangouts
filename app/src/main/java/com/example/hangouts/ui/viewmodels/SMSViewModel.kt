@@ -3,6 +3,7 @@ package com.example.hangouts.ui.viewmodels
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.telephony.SmsManager
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -36,10 +37,10 @@ class SMSViewModel : ViewModel() {
         }
     }
 
-    fun sendSMS(context: Context, message : String, number: String) {
-        val uri = Uri.parse("smsto:$number")
-        val intent = Intent(Intent.ACTION_SENDTO, uri)
-        intent.putExtra("sms_body", message)
-        context.startActivity(intent)
+    fun sendSMS( phoneNumber : String, message: String) {
+        viewModelScope.launch {
+            val smsManager = SmsManager.getDefault()
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+        }
     }
 }

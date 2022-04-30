@@ -14,9 +14,9 @@ class ContactRepositoryImpl() : ContactRepository{
         return dao.getContacts()
     }
 
-//    override suspend fun getContactById(id: Long): Contact? {
-//        return dao.getContactById(id)
-//    }
+    override suspend fun getContactByPhoneNumber(phoneNumber: String): Contact? {
+        return dao.getContactByPhoneNumber(phoneNumber)
+    }
 
     override suspend fun insertContact(contact: Contact) {
         dao.insertContact(contact)

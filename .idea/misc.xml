@@ -16,6 +16,9 @@
         <entry key="../hangouts/app/src/main/res/layout/item_contacts.xml" value="0.3066123188405797" />
         <entry key="../hangouts/app/src/main/res/layout/item_input_sms.xml" value="0.3908514492753623" />
         <entry key="../hangouts/app/src/main/res/layout/item_output_sms.xml" value="0.3908514492753623" />
+        <entry key="app/src/main/res/layout/fragment_add_contact.xml" value="0.24791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_info_contact.xml" value="0.24791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_sms.xml" value="0.24791666666666667" />
       </map>
     </option>
   </component>

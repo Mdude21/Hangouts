@@ -1,12 +1,18 @@
 package com.example.hangouts.ui.fragments
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -66,7 +72,8 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
             smsAdapter.update()
             binding.inputTextView.setText("")
             hideKeyboard()
-            viewModel.sendSMS(activity!!,message.message!!, contact.phoneNumber!!)
+            sendSms(contact.phoneNumber.toString(), message.message!!)
+            binding.smsRecycler.smoothScrollToPosition(smsAdapter.itemCount)
         }
     }
 
@@ -77,5 +84,17 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
             activity!!.currentFocus!!.windowToken,
             InputMethodManager.HIDE_NOT_ALWAYS
         )
+    }
+
+    private fun sendSms(phoneNumber : String, message: String) {
+        if (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.SEND_SMS),
+                0)
+
+        }
+        else {
+            val smsManager = SmsManager.getDefault() as SmsManager
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+        }
     }
 }

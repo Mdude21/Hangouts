@@ -40,7 +40,7 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
 
 //        if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
-            readContact()
+//            readContact()
 
         listAdapter = ListContactAdapter()
         viewModel.getContactsFromDb()
