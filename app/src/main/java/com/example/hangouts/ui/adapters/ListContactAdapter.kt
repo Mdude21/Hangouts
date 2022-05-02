@@ -1,7 +1,9 @@
-package com.example.hangouts.ui.fragments.list
+package com.example.hangouts.ui.adapters
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -43,20 +45,20 @@ class ListContactAdapter() :
         holder.itemView.apply {
             val itemName = findViewById<TextView>(R.id.itemContactsName)
             val itemText = findViewById<TextView>(R.id.itemContactsText)
-//            val itemAvatar = findViewById<ImageView>(R.id.itemContactsAvatar)
+            val itemAvatar = findViewById<ImageView>(R.id.itemContactsAvatar)
 
             itemName.text = contact.firstName + " " + contact.lastName
             itemText.text = contact.phoneNumber.toString()
+            if (contact.avatar != null)
+                itemAvatar.setImageURI(Uri.parse(contact.avatar))
 
             setOnClickListener{
                 onItemClickListener?.let { it(contact) }
             }
-
         }
     }
 
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = differ.currentList.size
 
     private var onItemClickListener: ((Contact) -> Unit)? = null

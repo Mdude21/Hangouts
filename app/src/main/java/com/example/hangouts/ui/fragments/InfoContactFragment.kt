@@ -1,5 +1,6 @@
 package com.example.hangouts.ui.fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -43,6 +45,11 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
             infoContactEmail.text = contact.email
             infoContactPhoneNumber.text = contact.phoneNumber.toString()
 
+            if (contact.avatar != null) {
+                val uri = Uri.parse(contact.avatar)
+                infoContactAvatar.setImageURI(uri)
+            }
+
             infoContactDeleteButton.setOnClickListener {
                 viewModel.deleteContact(contact)
                 Snackbar.make(view,"Contact is deleted", Snackbar.LENGTH_SHORT).show()
@@ -66,6 +73,7 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
                 }
                 findNavController().navigate(R.id.action_infoContactFragment_to_SMSFragment, bundle)
             }
+
         }
     }
 
@@ -73,12 +81,13 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
         if (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.CALL_PHONE),
                 0)
-
         } else {
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = Uri.parse("tel:$phoneNumber")
             startActivity(intent)
         }
     }
+
+
 
 }

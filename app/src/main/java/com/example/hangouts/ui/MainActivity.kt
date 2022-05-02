@@ -2,6 +2,7 @@ package com.example.hangouts.ui
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -35,7 +36,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //        }
 //        else
 //            readContact()
+
+
         requestSmsPermission()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
 
     override fun onRestart() {

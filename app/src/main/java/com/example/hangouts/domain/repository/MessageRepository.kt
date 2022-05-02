@@ -7,4 +7,5 @@ interface MessageRepository {
     suspend fun getAllMessages(id : Long) : List<Message>
 
     suspend fun addMessage(message: Message)
+
 }

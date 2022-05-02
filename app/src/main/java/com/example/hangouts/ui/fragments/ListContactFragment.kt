@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hangouts.R
 import com.example.hangouts.databinding.FragmentListBinding
 import com.example.hangouts.domain.models.Contact
-import com.example.hangouts.ui.fragments.list.ListContactAdapter
+import com.example.hangouts.ui.adapters.ListContactAdapter
 import com.example.hangouts.ui.viewmodels.ListContactFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
