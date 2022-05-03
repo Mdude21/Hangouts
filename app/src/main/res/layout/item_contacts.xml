@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/itemContactsAvatar"
         android:layout_width="75dp"
-        android:layout_height="71dp"
+        android:layout_height="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/avatar" />
 
-    <TextView
-        android:id="@+id/itemContactsName"
-        android:layout_width="308dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="279dp"
-        android:layout_marginTop="4dp"
-        tools:text="Ivan Ivanov"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/itemContactsAvatar"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/itemContactsText"
-        android:layout_width="307dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="4dp"
-        tools:text="89872935644"
-        app:layout_constraintBottom_toBottomOf="@+id/itemContactsAvatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/itemContactsName"
-        app:layout_constraintTop_toBottomOf="@+id/itemContactsName" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/itemContactsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:text="Ivan Ivanov" />
+
+        <TextView
+            android:id="@+id/itemContactsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:text="89872935644" />
+
+    </LinearLayout>
+
+</LinearLayout>

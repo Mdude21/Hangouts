@@ -1,15 +1,19 @@
 package com.example.hangouts.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.ContactsContract
 import android.provider.Telephony
+import android.view.*
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
 
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,13 +42,29 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //        else
 //            readContact()
 
-
         requestSmsPermission()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.popup_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.min0 -> {
+                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.purple_color))))
+                this.setTheme(R.style.Theme_Hangouts)
+                true
+            }
+            R.id.min1 -> {
+//                this.setTheme(R.style.NewTheme)
+                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.green_color))))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onRestart() {

@@ -1,7 +1,9 @@
 package com.example.hangouts.ui.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -36,6 +38,7 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
