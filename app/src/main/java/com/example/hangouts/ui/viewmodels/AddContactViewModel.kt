@@ -17,6 +17,12 @@ class AddContactViewModel : ViewModel() {
         }
     }
 
+    fun updateContact(contact: Contact) {
+        viewModelScope.launch {
+            repository.update(contact)
+        }
+    }
+
 
 
 }

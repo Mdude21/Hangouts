@@ -1,12 +1,9 @@
 package com.example.hangouts.ui.fragments
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,13 +41,13 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
 
         val contact = args.contact
 
-
         smsAdapter = SMSAdapter(this.context!!)
 
         viewModel.getAllMessages(contact.id!!)
 
         viewModel.messageList.observe(viewLifecycleOwner, {
             smsAdapter.addList(it)
+            smsAdapter.update()
         })
 
         binding.smsRecycler.apply {
@@ -59,21 +56,23 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
         }
 
         binding.sendButton.setOnClickListener {
-            val message = Message(
-                id = Random().nextLong(),
-                message = binding.inputTextView.text.toString(),
-                time = System.currentTimeMillis(),
-                user = "Me",
-                type = 1,
-                contactId = contact.id!!
-            )
-            viewModel.addMessage(message)
-            smsAdapter.addMessage(message)
-            smsAdapter.update()
-            binding.inputTextView.setText("")
-            hideKeyboard()
-            sendSms(contact.phoneNumber.toString(), message.message!!)
-            binding.smsRecycler.smoothScrollToPosition(smsAdapter.itemCount)
+            if (binding.inputTextView.text.toString() != "") {
+                val message = Message(
+                    id = Random().nextLong(),
+                    message = binding.inputTextView.text.toString(),
+                    time = System.currentTimeMillis(),
+                    user = "Me",
+                    type = 1,
+                    contactId = contact.id!!
+                )
+                viewModel.addMessage(message)
+                smsAdapter.addMessage(message)
+                smsAdapter.update()
+                binding.inputTextView.setText("")
+                hideKeyboard()
+                sendSms(contact.phoneNumber.toString(), message.message!!)
+                binding.smsRecycler.smoothScrollToPosition(smsAdapter.itemCount)
+            }
         }
     }
 
@@ -86,13 +85,18 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
         )
     }
 
-    private fun sendSms(phoneNumber : String, message: String) {
-        if (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.SEND_SMS),
-                0)
+    private fun sendSms(phoneNumber: String, message: String) {
+        if (ContextCompat.checkSelfPermission(
+                activity!!,
+                android.Manifest.permission.SEND_SMS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity!!, arrayOf(android.Manifest.permission.SEND_SMS),
+                0
+            )
 
-        }
-        else {
+        } else {
             val smsManager = SmsManager.getDefault() as SmsManager
             smsManager.sendTextMessage(phoneNumber, null, message, null, null)
         }

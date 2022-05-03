@@ -16,7 +16,13 @@ interface ContactDao {
     @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE phone_number = :phoneNumber")
     suspend fun getContactByPhoneNumber(phoneNumber: String): Contact?
 
+    @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE id = :id")
+    suspend fun getContactById(id: Long): Contact?
+
     @Delete
     suspend fun deleteContact(contact: Contact)
+
+    @Update
+    suspend fun update(contact: Contact)
 
 }

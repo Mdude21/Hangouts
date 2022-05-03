@@ -71,16 +71,21 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                         address = fragmentEditContactAddress.text.toString(),
                         avatar = avatarPath
                     )
+                    viewModel.addContact(contact!!)
+                    Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
                 } else {
                     contact?.phoneNumber = fragmentEditContactPhoneNumber.text.toString()
                     contact?.address = fragmentEditContactAddress.text.toString()
                     contact?.email = fragmentEditContactEmailAddress.text.toString()
                     contact?.firstName = fragmentEditContactFirstName.text.toString()
                     contact?.lastName = fragmentEditContactLastName.text.toString()
-                    contact?.avatar = avatarPath
+                    if (avatarPath != null)
+                        contact?.avatar = avatarPath
+                    viewModel.updateContact(contact!!)
+                    Snackbar.make(view, "Contact is updated", Snackbar.LENGTH_SHORT).show()
                 }
-                viewModel.addContact(contact!!)
-                Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
+//                viewModel.addContact(contact!!)
+//                Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addContactFragment_to_listContactFragment)
             }
         }

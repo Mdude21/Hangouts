@@ -12,4 +12,8 @@ interface ContactRepository {
     suspend fun insertContact(contact: Contact)
 
     suspend fun deleteContact(contact: Contact)
+
+    suspend fun getContactById(id : Long) : Contact?
+
+    suspend fun update(contact: Contact)
 }

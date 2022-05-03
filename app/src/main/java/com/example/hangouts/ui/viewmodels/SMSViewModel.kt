@@ -33,7 +33,7 @@ class SMSViewModel : ViewModel() {
 
     fun getAllMessages(id : Long) {
         viewModelScope.launch {
-            messageListLiveData.postValue(repository.getAllMessages(id))
+            messageListLiveData.value = repository.getAllMessages(id)
         }
     }
 

@@ -22,7 +22,15 @@ class ContactRepositoryImpl() : ContactRepository{
         dao.insertContact(contact)
     }
 
+    override suspend fun update(contact: Contact) {
+        dao.update(contact)
+    }
+
     override suspend fun deleteContact(contact: Contact) {
         dao.deleteContact(contact)
+    }
+
+    override suspend fun getContactById(id: Long): Contact? {
+        return dao.getContactById(id)
     }
 }
