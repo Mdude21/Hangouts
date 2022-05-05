@@ -1,31 +1,21 @@
 package com.example.hangouts.ui.fragments
 
 import android.app.Activity
-import android.app.ProgressDialog.show
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.hangouts.R
 import com.example.hangouts.databinding.FragmentAddContactBinding
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.ui.viewmodels.AddContactViewModel
 import com.google.android.material.snackbar.Snackbar
-import java.io.File
 import java.util.*
-import android.content.ContentResolver
 
 
 class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
@@ -71,6 +61,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                         address = fragmentEditContactAddress.text.toString(),
                         avatar = avatarPath
                     )
+
                     viewModel.addContact(contact!!)
                     Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
                 } else {
@@ -79,8 +70,11 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                     contact?.email = fragmentEditContactEmailAddress.text.toString()
                     contact?.firstName = fragmentEditContactFirstName.text.toString()
                     contact?.lastName = fragmentEditContactLastName.text.toString()
-                    if (avatarPath != null)
-                        contact?.avatar = avatarPath
+                    if (avatarPath != null) {
+                        viewModel.pathImageLiveData.observe(viewLifecycleOwner) {
+                            contact?.avatar = it
+                        }
+                    }
                     viewModel.updateContact(contact!!)
                     Snackbar.make(view, "Contact is updated", Snackbar.LENGTH_SHORT).show()
                 }
@@ -111,6 +105,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
             val uri = data?.data
             resolver.takePersistableUriPermission(uri!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
             avatarPath = data.data.toString()
+            viewModel.savePathImage(avatarPath!!)
         }
     }
 

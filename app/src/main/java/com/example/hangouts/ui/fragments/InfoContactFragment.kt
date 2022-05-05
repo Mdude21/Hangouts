@@ -1,5 +1,6 @@
 package com.example.hangouts.ui.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -34,14 +35,14 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val contact = args.contact
 
         with (binding) {
             infoContactAddress.text = contact.address
-            infoContactFirstName.text = contact.firstName
-            infoContactLastName.text = contact.lastName
+            infoContactDisplayName.text = contact.firstName + " " + contact.lastName
             infoContactEmail.text = contact.email
             infoContactPhoneNumber.text = contact.phoneNumber.toString()
 

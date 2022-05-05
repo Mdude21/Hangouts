@@ -20,6 +20,10 @@ import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.ui.adapters.ListContactAdapter
 import com.example.hangouts.ui.viewmodels.ListContactFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 
 class ListContactFragment :  Fragment(R.layout.fragment_list) {
@@ -54,6 +58,11 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
         binding.list.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = listAdapter
+            val dividerItemDecoration = DividerItemDecoration(
+                context,
+                (layoutManager as LinearLayoutManager).orientation
+            )
+            addItemDecoration(dividerItemDecoration)
         }
 
         listAdapter.setOnClickListener {
@@ -79,7 +88,7 @@ class ListContactFragment :  Fragment(R.layout.fragment_list) {
 
     private fun readContact() {
 
-        val cols = listOf<String>(
+        val cols = listOf(
             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
             ContactsContract.CommonDataKinds.Phone.NUMBER,
             ContactsContract.CommonDataKinds.Phone._ID

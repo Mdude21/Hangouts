@@ -11,6 +11,11 @@ import kotlinx.coroutines.launch
 class AddContactViewModel : ViewModel() {
     private val repository = ContactRepositoryImpl()
 
+    private val pathImageMutableLiveData = MutableLiveData<String>()
+
+    val pathImageLiveData : LiveData<String>
+    get() = pathImageMutableLiveData
+
     fun addContact(contact : Contact) {
         viewModelScope.launch {
             repository.insertContact(contact)
@@ -21,6 +26,10 @@ class AddContactViewModel : ViewModel() {
         viewModelScope.launch {
             repository.update(contact)
         }
+    }
+
+    fun savePathImage(pathImage : String){
+        pathImageMutableLiveData.postValue(pathImage)
     }
 
 

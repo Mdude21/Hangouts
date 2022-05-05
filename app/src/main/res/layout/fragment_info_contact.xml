@@ -1,146 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/my_background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/infoContactSMSButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/my_background_color"
+            app:srcCompat="@drawable/ic_message"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/infoContactCallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/my_background_color"
+            app:srcCompat="@drawable/ic_call"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/infoContactEditButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/my_background_color"
+            app:srcCompat="@drawable/ic_edit"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/infoContactDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/my_background_color"
+            app:srcCompat="@drawable/ic_delete"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/infoContactAvatar"
-        android:layout_width="122dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/infoContactSMSButton"
-        app:layout_constraintTop_toBottomOf="@+id/infoContactSMSButton"
-        tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+        android:layout_width="137dp"
+        android:layout_height="137dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/image"
+        android:src="@drawable/avatar" />
 
     <TextView
-        android:id="@+id/infoContactFirstName"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="32dp"
+        android:id="@+id/infoContactDisplayName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toEndOf="@+id/infoContactAvatar"
-        app:layout_constraintTop_toTopOf="@+id/infoContactAvatar"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="First Name" />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        tools:text="First Name Second Name" />
 
-    <TextView
-        android:id="@+id/infoContactLastName"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_marginTop="24dp"
-        tools:text="Last Name"
-        app:layout_constraintBottom_toBottomOf="@+id/infoContactAvatar"
-        app:layout_constraintEnd_toEndOf="@+id/infoContactFirstName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/infoContactFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/infoContactFirstName" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/custom_rectangle"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/infoContactAddress"
-        android:layout_width="313dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="208dp"
-        android:gravity="center_vertical"
-        tools:text="Address"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/infoContactEmail"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/infoContactEmail"
-        app:layout_constraintTop_toBottomOf="@+id/infoContactEmail" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/infoContactEmail"
-        android:layout_width="313dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="100dp"
-        android:gravity="center_vertical"
-        tools:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/info_contact_phone_number"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/info_contact_phone_number"
-        app:layout_constraintTop_toBottomOf="@+id/info_contact_phone_number"
-        app:layout_constraintVertical_bias="0.076" />
+        <TextView
+            android:id="@+id/info_contact_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            tools:text="Phone Number" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/info_contact_phone_number"
-        android:layout_width="313dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="352dp"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/infoContactAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/infoContactAvatar"
-        app:layout_constraintVertical_bias="0.96"
-        tools:text="Phone Number" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/custom_rectangle"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <ImageButton
-        android:id="@+id/infoContactSMSButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:background="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101"
-        app:srcCompat="@android:drawable/stat_notify_chat"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@color/black" />
 
-    <ImageButton
-        android:id="@+id/infoContactCallButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/green"
-        app:layout_constraintBottom_toBottomOf="@+id/infoContactSMSButton"
-        app:layout_constraintStart_toEndOf="@+id/infoContactSMSButton"
-        app:layout_constraintTop_toTopOf="@+id/infoContactSMSButton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/stat_sys_phone_call"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <TextView
+            android:id="@+id/infoContactEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="Email" />
+    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/infoContactEditButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:background="@color/green"
-        app:layout_constraintBottom_toBottomOf="@+id/infoContactCallButton"
-        app:layout_constraintStart_toEndOf="@+id/infoContactCallButton"
-        app:layout_constraintTop_toTopOf="@+id/infoContactCallButton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/custom_rectangle"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <ImageButton
-        android:id="@+id/infoContactDeleteButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:background="@color/green"
-        app:layout_constraintBottom_toBottomOf="@+id/infoContactEditButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/infoContactEditButton"
-        app:layout_constraintTop_toTopOf="@+id/infoContactEditButton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:textColor="@color/black" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/infoContactAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="Address" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

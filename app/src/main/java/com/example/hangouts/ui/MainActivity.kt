@@ -2,17 +2,11 @@ package com.example.hangouts.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.ContactsContract
-import android.provider.Telephony
 import android.view.*
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -20,11 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.hangouts.R
-import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.ui.viewmodels.MainActivityViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -35,12 +26,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this, Array(1) { Manifest.permission.READ_CONTACTS}, 111)
-//        }
-//        else
-//            readContact()
 
         requestSmsPermission()
     }
@@ -54,7 +39,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.min0 -> {
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.purple_color))))
+                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.dark_green_color))))
                 this.setTheme(R.style.Theme_Hangouts)
                 true
             }
@@ -74,8 +59,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val time = sh.getLong("Time", 1L)
         if (time > 0) {
             val newTime = (System.currentTimeMillis() - time) / 1000
-            Toast.makeText(this, "you were absent for $newTime second", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, printBackgroundText(newTime), Toast.LENGTH_LONG).show()
         }
+    }
+
+    @SuppressLint("ResourceType")
+    private fun printBackgroundText(time : Long) : String {
+        val s1 = getString(R.string.upsent)
+        val s2 = getString(R.string.second)
+        return s1 + time + s2
     }
 
     override fun onStop() {

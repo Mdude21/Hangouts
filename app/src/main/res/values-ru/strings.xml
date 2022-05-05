@@ -8,8 +8,12 @@
     <string name="last_name">Фамилия</string>
     <string name="first_name">Имя</string>
     <string name="message">Сообщение</string>
-    <string name="Blue_theme">Синяя тема</string>
+    <string name="Dark_green_theme">Темно-зеленая тема</string>
     <string name="Green_theme">Зеленая тема</string>
-    <string name="purple_color">#6200EE</string>
+    <string name="dark_green_color">#6200EE</string>
     <string name="green_color">#06952F</string>
+    <string name="upsent">"Вы отсутствовали "</string>
+    <string name="second">" секунд"</string>
+    <string name="image">изображение</string>
+    <string name="mobile">телефон</string>
 </resources>

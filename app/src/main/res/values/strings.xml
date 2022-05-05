@@ -7,8 +7,12 @@
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
     <string name="message">Message</string>
-    <string name="Blue_theme">blue theme</string>
-    <string name="Green_theme">green theme</string>
-    <string name="purple_color">#6200EE</string>
-    <string name="green_color">#06952F</string>
+    <string name="Dark_green_theme">Dark Green theme</string>
+    <string name="Green_theme">Green theme</string>
+    <string name="dark_green_color">#017E86</string>
+    <string name="green_color">#00A991</string>
+    <string name="upsent" type="id">"you were absent for "</string>
+    <string name="second" type="id">" second"</string>
+    <string name="image">Image</string>
+    <string name="mobile">mobile</string>
 </resources>
