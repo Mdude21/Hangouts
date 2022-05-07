@@ -17,4 +17,6 @@
     <string name="image">изображение</string>
     <string name="mobile">телефон</string>
     <string name="choose_image">Выбрать изображение</string>
+    <string name="add_contact">Контакт добавлен</string>
+    <string name="update_contact">Контакт обновлен</string>
 </resources>

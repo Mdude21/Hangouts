@@ -16,4 +16,6 @@
     <string name="image">Image</string>
     <string name="mobile">mobile</string>
     <string name="choose_image">Choose image</string>
+    <string name="add_contact">Contact is added</string>
+    <string name="update_contact">Contact is updated</string>
 </resources>

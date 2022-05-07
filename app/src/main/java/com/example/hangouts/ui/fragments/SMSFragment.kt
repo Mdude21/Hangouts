@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hangouts.R
 import com.example.hangouts.databinding.FragmentSmsBinding
 import com.example.hangouts.domain.models.Message
+import com.example.hangouts.ui.SMSBroadcastReceiver
 import com.example.hangouts.ui.adapters.SMSAdapter
 import com.example.hangouts.ui.viewmodels.SMSViewModel
 import java.util.*
@@ -48,12 +49,15 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
         viewModel.messageList.observe(viewLifecycleOwner, {
             smsAdapter.addList(it)
             smsAdapter.update()
-            binding.smsRecycler.smoothScrollToPosition(smsAdapter.itemCount)
+
         })
+
+
 
         binding.smsRecycler.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = smsAdapter
+            smoothScrollToPosition(smsAdapter.itemCount)
         }
 
         binding.sendButton.setOnClickListener {

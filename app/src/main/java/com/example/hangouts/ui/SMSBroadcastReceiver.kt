@@ -10,9 +10,7 @@ import com.example.hangouts.data.repository.MessageRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.domain.models.Message
 import com.example.hangouts.ui.adapters.SMSAdapter
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 
 class SMSBroadcastReceiver : BroadcastReceiver() {
@@ -20,17 +18,17 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
     private val contactRepository = ContactRepositoryImpl()
     private val messageRepository = MessageRepositoryImpl()
     private var contact: Contact? = null
-    private val jobs = mutableListOf<Job>()
+    private var job : Job? = null
 
     override fun onReceive(context: Context, intent: Intent?) {
         if (!intent?.action.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) return
-       GlobalScope.launch {
-            val extractMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
-            extractMessages.forEach {
-                val phone = it.displayOriginatingAddress
+        val extractMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
+        extractMessages.forEach { smsMassage ->
+            job?.cancel()
+            job = GlobalScope.launch {
+                val phone = smsMassage.displayOriginatingAddress
 
                 contact = contactRepository.getContactByPhoneNumber(phone)
-                Log.d("AZAMAT", "$contact")
                 if (contact == null) {
                     val contact = Contact(
                         id = Random().nextLong(),
@@ -42,11 +40,15 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
                         avatar = null
                     )
                     addContact(contact)
+
                 }
-                addMessage(contact!!, it.displayMessageBody)
+                addMessage(contact!!, smsMassage.displayMessageBody)
             }
+
+
         }
     }
+
 
     private suspend fun addContact(contact: Contact) {
         contactRepository.insertContact(contact)
@@ -64,4 +66,5 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
 
         messageRepository.addMessage(message)
     }
+
 }

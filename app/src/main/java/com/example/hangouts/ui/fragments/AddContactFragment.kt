@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -42,15 +43,35 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
         }
 
         with(binding) {
+            viewModel.pathImageLiveData.observe(viewLifecycleOwner) {
+                editContactAvatarImageButton.setImageURI(Uri.parse(it))
+            }
 
-            if (contact != null)
+            if (contact != null) {
+                if (contact?.avatar != null)
+                    viewModel.savePathImage(contact?.avatar!!)
                 fillContact()
+            }
 
             chooseImageButton.setOnClickListener {
                 openGalleryForImage()
             }
 
+            viewModel.isValidPhoneNumber(fragmentEditContactPhoneNumber.text.toString())
+
+            fragmentEditContactPhoneNumber.doAfterTextChanged {
+                viewModel.isValidPhoneNumber(fragmentEditContactPhoneNumber.text.toString())
+            }
+
+            viewModel.isValidPhoneNumberLiveData.observe(viewLifecycleOwner) {
+                fragmentEditContactButtonSave.isEnabled = it
+            }
+
             fragmentEditContactButtonSave.setOnClickListener {
+
+                viewModel.pathImageLiveData.observe(viewLifecycleOwner) {
+                    avatarPath = it
+                }
                 if (contact?.id == null) {
                     contact = Contact(
                         id = Random().nextLong(),
@@ -63,7 +84,8 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                     )
 
                     viewModel.addContact(contact!!)
-                    Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(view, getString(R.string.add_contact), Snackbar.LENGTH_SHORT)
+                        .show()
                 } else {
                     contact?.phoneNumber = fragmentEditContactPhoneNumber.text.toString()
                     contact?.address = fragmentEditContactAddress.text.toString()
@@ -71,29 +93,28 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
                     contact?.firstName = fragmentEditContactFirstName.text.toString()
                     contact?.lastName = fragmentEditContactLastName.text.toString()
                     if (avatarPath != null) {
-                        viewModel.pathImageLiveData.observe(viewLifecycleOwner) {
-                            contact?.avatar = it
-                        }
+                        contact?.avatar = avatarPath
                     }
                     viewModel.updateContact(contact!!)
-                    Snackbar.make(view, "Contact is updated", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(view, getString(R.string.update_contact), Snackbar.LENGTH_SHORT)
+                        .show()
                 }
-//                viewModel.addContact(contact!!)
-//                Snackbar.make(view, "Contact is added", Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addContactFragment_to_listContactFragment)
             }
         }
     }
 
-    private fun fillContact(){
-        with (binding) {
+    private fun fillContact() {
+        with(binding) {
             fragmentEditContactPhoneNumber.setText(contact?.phoneNumber.toString())
             fragmentEditContactFirstName.setText(contact?.firstName)
             fragmentEditContactLastName.setText(contact?.lastName)
             fragmentEditContactEmailAddress.setText(contact?.email)
             fragmentEditContactAddress.setText(contact?.address)
-            if (contact?.avatar != null)
-                editContactAvatarImageButton.setImageURI(Uri.parse(contact?.avatar))
+            viewModel.pathImageLiveData.observe(viewLifecycleOwner) {
+                if (it != null)
+                    editContactAvatarImageButton.setImageURI(Uri.parse(it))
+            }
         }
     }
 
@@ -105,7 +126,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
             val uri = data?.data
             resolver.takePersistableUriPermission(uri!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
             avatarPath = data.data.toString()
-            viewModel.savePathImage(avatarPath!!)
+            viewModel.savePathImage(data.data.toString())
         }
     }
 
