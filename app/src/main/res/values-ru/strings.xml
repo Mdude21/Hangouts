@@ -16,4 +16,5 @@
     <string name="second">" секунд"</string>
     <string name="image">изображение</string>
     <string name="mobile">телефон</string>
+    <string name="choose_image">Выбрать изображение</string>
 </resources>

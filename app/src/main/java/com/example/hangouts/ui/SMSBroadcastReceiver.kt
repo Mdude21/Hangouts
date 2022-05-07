@@ -9,6 +9,7 @@ import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.data.repository.MessageRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.domain.models.Message
+import com.example.hangouts.ui.adapters.SMSAdapter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
         if (!intent?.action.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) return
-        jobs.add(GlobalScope.launch {
+       GlobalScope.launch {
             val extractMessages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
             extractMessages.forEach {
                 val phone = it.displayOriginatingAddress
@@ -44,7 +45,7 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
                 }
                 addMessage(contact!!, it.displayMessageBody)
             }
-        })
+        }
     }
 
     private suspend fun addContact(contact: Contact) {
@@ -60,6 +61,7 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
             type = 2,
             contactId = contact.id!!
         )
+
         messageRepository.addMessage(message)
     }
 }

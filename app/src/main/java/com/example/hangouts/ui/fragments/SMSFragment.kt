@@ -48,6 +48,7 @@ class SMSFragment : Fragment(R.layout.fragment_sms) {
         viewModel.messageList.observe(viewLifecycleOwner, {
             smsAdapter.addList(it)
             smsAdapter.update()
+            binding.smsRecycler.smoothScrollToPosition(smsAdapter.itemCount)
         })
 
         binding.smsRecycler.apply {

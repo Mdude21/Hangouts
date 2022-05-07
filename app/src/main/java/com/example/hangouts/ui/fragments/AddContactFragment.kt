@@ -46,7 +46,7 @@ class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
             if (contact != null)
                 fillContact()
 
-            editContactAvatarImageButton.setOnClickListener {
+            chooseImageButton.setOnClickListener {
                 openGalleryForImage()
             }
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_background_color">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/fragmentEditContactEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentEditContactPhoneNumber"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/fragmentEditContactAddress"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="@string/address"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentEditContactEmailAddress"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/fragmentEditContactLastName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/last_name"
+            android:layout_marginStart="220dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fragmentEditContactFirstName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/fragmentEditContactFirstName"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentEditContactFirstName"
+            app:layout_constraintVertical_bias="0.041" />
+
+        <ImageView
+            android:id="@+id/editContactAvatarImageButton"
+            android:layout_width="122dp"
+            android:layout_height="122dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.067"
+            app:srcCompat="@drawable/avatar"
+            tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/fragmentEditContactFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/first_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintTop_toTopOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/fragmentEditContactPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:hint="@string/phone_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/chooseImageButton"
+            app:layout_constraintVertical_bias="0.036"
+            tools:ignore="TextFields" />
+
+        <Button
+            android:id="@+id/fragmentEditContactButtonSave"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/custom_rectangle"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fragmentEditContactAddress"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="@+id/fragmentEditContactAddress"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentEditContactAddress"
+            app:layout_constraintVertical_bias="0.044" />
+
+        <Button
+            android:id="@+id/chooseImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/choose_image"
+            app:layout_constraintEnd_toEndOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editContactAvatarImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/editContactAvatarImageButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

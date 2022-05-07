@@ -15,4 +15,5 @@
     <string name="second" type="id">" second"</string>
     <string name="image">Image</string>
     <string name="mobile">mobile</string>
+    <string name="choose_image">Choose image</string>
 </resources>

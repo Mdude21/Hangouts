@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         return when(item.itemId) {
             R.id.min0 -> {
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.dark_green_color))))
-                this.setTheme(R.style.Theme_Hangouts)
+                this.setTheme(R.style.Theme_Hangouts_NewTheme)
                 true
             }
             R.id.min1 -> {
-//                this.setTheme(R.style.NewTheme)
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.green_color))))
+                this.setTheme(R.style.Theme_Hangouts)
                 true
             }
             else -> super.onOptionsItemSelected(item)
