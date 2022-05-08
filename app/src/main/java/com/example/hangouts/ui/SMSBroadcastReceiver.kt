@@ -18,7 +18,7 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
     private val contactRepository = ContactRepositoryImpl()
     private val messageRepository = MessageRepositoryImpl()
     private var contact: Contact? = null
-    private var job : Job? = null
+    private var job: Job? = null
 
     override fun onReceive(context: Context, intent: Intent?) {
         if (!intent?.action.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) return
@@ -39,19 +39,18 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
                         address = null,
                         avatar = null
                     )
-                    addContact(contact)
-
-                }
-                addMessage(contact!!, smsMassage.displayMessageBody)
+                    addContact(contact, smsMassage.displayMessageBody)
+                } else
+                    addMessage(contact!!, smsMassage.displayMessageBody)
             }
-
-
         }
     }
 
-
-    private suspend fun addContact(contact: Contact) {
-        contactRepository.insertContact(contact)
+    private suspend fun addContact(contact: Contact, message: String) {
+        coroutineScope {
+            contactRepository.insertContact(contact)
+            addMessage(contact, message)
+        }
     }
 
     private suspend fun addMessage(contact: Contact, text: String?) {
@@ -63,7 +62,6 @@ class SMSBroadcastReceiver : BroadcastReceiver() {
             type = 2,
             contactId = contact.id!!
         )
-
         messageRepository.addMessage(message)
     }
 
