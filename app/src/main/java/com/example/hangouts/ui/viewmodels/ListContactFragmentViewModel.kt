@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.domain.models.Contact
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ListContactFragmentViewModel : ViewModel(){
@@ -19,7 +20,10 @@ class ListContactFragmentViewModel : ViewModel(){
 
     fun getContactsFromDb() {
         viewModelScope.launch {
-            contactListLiveData.postValue(repository.getContacts())
+//            contactListLiveData.postValue(repository.getContacts())
+            repository.getContacts().collect {
+                contactListLiveData.postValue(it)
+            }
         }
     }
 

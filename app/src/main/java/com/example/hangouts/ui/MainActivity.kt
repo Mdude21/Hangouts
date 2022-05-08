@@ -56,13 +56,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.min0 -> {
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.dark_green_color))))
-                this.setTheme(R.style.Theme_Hangouts_NewTheme)
+                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#017E86")))
+//                this.setTheme(R.style.NewTheme)
                 true
             }
             R.id.min1 -> {
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(getString(R.string.green_color))))
-                this.setTheme(R.style.Theme_Hangouts)
+                supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#00A991")))
+//                this.setTheme(R.style.Theme_Hangouts)
                 true
             }
             else -> super.onOptionsItemSelected(item)

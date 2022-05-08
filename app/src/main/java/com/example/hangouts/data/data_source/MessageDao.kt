@@ -2,6 +2,7 @@ package com.example.hangouts.data.data_source
 
 import androidx.room.*
 import com.example.hangouts.domain.models.Message
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -11,5 +12,5 @@ interface MessageDao {
     suspend fun insertMessage(message: Message)
 
     @Query("SELECT * FROM messages WHERE contactId = :id ORDER BY time ASC")
-    suspend fun getAllMessagesByContactId(id : Long) : List<Message>
+    fun getAllMessagesByContactId(id : Long) : Flow<List<Message>>
 }

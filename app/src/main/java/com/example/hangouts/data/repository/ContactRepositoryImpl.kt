@@ -10,7 +10,7 @@ class ContactRepositoryImpl() : ContactRepository{
 
     private val dao = DataBase.instance.ContactDao()
 
-    override suspend fun getContacts(): List<Contact> {
+    override fun getContacts(): Flow<List<Contact>> {
         return dao.getContacts()
     }
 

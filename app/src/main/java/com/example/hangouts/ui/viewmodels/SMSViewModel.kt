@@ -13,8 +13,7 @@ import com.example.hangouts.data.repository.MessageRepositoryImpl
 import com.example.hangouts.domain.models.Message
 import kotlinx.coroutines.launch
 import androidx.core.content.ContextCompat.startActivity
-
-
+import kotlinx.coroutines.flow.collect
 
 
 class SMSViewModel : ViewModel() {
@@ -33,7 +32,10 @@ class SMSViewModel : ViewModel() {
 
     fun getAllMessages(id : Long) {
         viewModelScope.launch {
-            messageListLiveData.value = repository.getAllMessages(id)
+//            messageListLiveData.value = repository.getAllMessages(id)
+            repository.getAllMessages(id).collect {
+                messageListLiveData.postValue(it)
+            }
         }
     }
 

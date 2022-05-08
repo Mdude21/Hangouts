@@ -11,7 +11,7 @@ interface ContactDao {
     suspend fun insertContact(contact: Contact)
 
     @Query("SELECT * FROM ${ContactContract.TABLE_NAME} ORDER BY ${ContactContract.Columns.FIRSTNAME} ASC")
-    suspend fun getContacts(): List<Contact>
+    fun getContacts(): Flow<List<Contact>>
 
     @Query("SELECT * FROM ${ContactContract.TABLE_NAME} WHERE phone_number = :phoneNumber")
     suspend fun getContactByPhoneNumber(phoneNumber: String): Contact?
