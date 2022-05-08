@@ -51,7 +51,7 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
 
             infoContactDeleteButton.setOnClickListener {
                 viewModel.deleteContact(contact)
-                Snackbar.make(view, "Contact is deleted", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view, getString(R.string.delete_contact), Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_infoContactFragment_to_listContactFragment)
             }
 

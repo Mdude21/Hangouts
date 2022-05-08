@@ -19,4 +19,5 @@
     <string name="add_contact">Contact is added</string>
     <string name="update_contact">Contact is updated</string>
     <string name="perrmisions">Permissions denied. You could granted permissions in setting app</string>
+    <string name="delete_contact">Contact is deleted</string>
 </resources>

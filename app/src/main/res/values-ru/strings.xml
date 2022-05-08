@@ -20,4 +20,5 @@
     <string name="add_contact">Контакт добавлен</string>
     <string name="update_contact">Контакт обновлен</string>
     <string name="perrmisions">Доступ к разрешениям запрещен. Вы можете включить их в настройках приложения</string>
+    <string name="delete_contact">Контакт удален</string>
 </resources>
