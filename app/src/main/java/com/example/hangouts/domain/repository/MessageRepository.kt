@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MessageRepository {
 
-    fun getAllMessages(id : Long) : Flow<List<Message>>
+    fun getAllMessages(id: Long): Flow<List<Message>>
 
     suspend fun addMessage(message: Message)
 

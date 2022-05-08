@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hangouts.R
 import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import kotlinx.coroutines.launch
@@ -38,18 +37,21 @@ class AddContactViewModel : ViewModel() {
         pathImageMutableLiveData.postValue(pathImage)
     }
 
-    fun isValidPhoneNumber(phoneNumber: String){
-        isValidPhoneNumberMutableLiveData.postValue(phoneNumber.length in 1..14 && isNotNumber(phoneNumber))
+    fun isValidPhoneNumber(phoneNumber: String) {
+        isValidPhoneNumberMutableLiveData.postValue(
+            phoneNumber.length in 1..14 && isNotNumber(
+                phoneNumber
+            )
+        )
     }
 
-    private fun isNotNumber(string: String) : Boolean {
+    private fun isNotNumber(string: String): Boolean {
         var i = 0
-        while (i < string.length){
+        while (i < string.length) {
             if ((string[i] < '0' || string[i] > '9') && string[i] != '+')
                 return false
             i++
         }
         return true
     }
-
 }

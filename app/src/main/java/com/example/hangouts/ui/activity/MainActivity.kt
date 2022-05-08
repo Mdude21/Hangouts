@@ -1,4 +1,4 @@
-package com.example.hangouts.ui
+package com.example.hangouts.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -19,11 +19,7 @@ import com.example.hangouts.ui.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val viewModel : MainActivityViewModel by viewModels()
-
-    private lateinit var smsBroadcastReceiver: SMSBroadcastReceiver
-
-
+    private val viewModel: MainActivityViewModel by viewModels()
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +28,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED
                 && (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED)
-                && checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS), REQUEST_CODE_SMS_PERMISSION)
+                && checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    arrayOf(
+                        Manifest.permission.SEND_SMS,
+                        Manifest.permission.RECEIVE_SMS
+                    ), REQUEST_CODE_SMS_PERMISSION
+                )
                 requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), REQUEST_CALL_PERMISSION)
             } else {
                 requestSmsPermission()
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.min0 -> {
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#017E86")))
 //                this.setTheme(R.style.NewTheme)
@@ -81,7 +83,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     @SuppressLint("ResourceType")
-    private fun printBackgroundText(time : Long) : String {
+    private fun printBackgroundText(time: Long): String {
         val s1 = getString(R.string.upsent)
         val s2 = getString(R.string.second)
         return s1 + time + s2
@@ -102,23 +104,38 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == REQUEST_CODE_SMS_PERMISSION) {
             if (permissions[0] == Manifest.permission.SEND_SMS && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                && permissions[1] == Manifest.permission.RECEIVE_SMS && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                && permissions[1] == Manifest.permission.RECEIVE_SMS && grantResults[1] == PackageManager.PERMISSION_GRANTED
+            ) {
                 requestSmsPermission()
             } else {
                 Toast.makeText(this, "App need grant permission!", Toast.LENGTH_LONG).show()
+                finish()
             }
         }
+
         if (requestCode == REQUEST_CALL_PERMISSION) {
             if (permissions[0] == Manifest.permission.CALL_PHONE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 requestCallPermission()
             } else {
                 Toast.makeText(this, "App need grant permission!", Toast.LENGTH_LONG).show()
+                finish()
             }
         }
+
+//        if (requestCode == REQUEST_READ_CONTACTS_PERMISSION) {
+//            if (permissions[0] == Manifest.permission.READ_CONTACTS && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                requestCallPermission()
+//            } else {
+//                Toast.makeText(this, "App need grant permission!", Toast.LENGTH_LONG).show()
+//            }
+//        }
     }
 
+
+    //read contacts from contactList
     private fun readContact() {
 
         val cols = listOf(
@@ -129,7 +146,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val rs = this.contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-            cols, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+            cols, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+        )
 
         while (rs?.moveToNext()!!) {
             val contact = Contact(
@@ -149,7 +167,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val permission = Manifest.permission.RECEIVE_SMS
         val grant = ContextCompat.checkSelfPermission(this, permission)
         if (grant != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(permission), REQUEST_CODE_SMS_PERMISSION)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(permission),
+                REQUEST_CODE_SMS_PERMISSION
+            )
         }
     }
 
@@ -161,9 +183,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
+    private fun requestReadContactsPermission() {
+        val permission = Manifest.permission.READ_CONTACTS
+        val grant = ContextCompat.checkSelfPermission(this, permission)
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(permission),
+                REQUEST_READ_CONTACTS_PERMISSION
+            )
+        }
+    }
+
     companion object {
         private const val REQUEST_CODE_SMS_PERMISSION = 1
         private const val REQUEST_CALL_PERMISSION = 2
+        private const val REQUEST_READ_CONTACTS_PERMISSION = 3
     }
 
 }

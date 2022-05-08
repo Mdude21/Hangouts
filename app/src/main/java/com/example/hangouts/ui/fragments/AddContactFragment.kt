@@ -18,7 +18,6 @@ import com.example.hangouts.ui.viewmodels.AddContactViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
-
 class AddContactFragment : Fragment(R.layout.fragment_add_contact) {
 
     private lateinit var binding: FragmentAddContactBinding

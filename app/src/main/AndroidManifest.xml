@@ -19,7 +19,7 @@
         android:fullBackupContent="false"
         android:theme="@style/Theme.Hangouts">
 
-        <receiver android:name=".ui.SMSBroadcastReceiver"
+        <receiver android:name=".ui.receiver.SMSBroadcastReceiver"
             android:exported="true" android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -27,7 +27,7 @@
         </receiver>
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>

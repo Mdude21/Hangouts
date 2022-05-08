@@ -1,7 +1,6 @@
 package com.example.hangouts.ui.fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -23,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
     private lateinit var binding: FragmentInfoContactBinding
-    private val viewModel : InfoContactViewModel by viewModels()
+    private val viewModel: InfoContactViewModel by viewModels()
     private val args: InfoContactFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -40,7 +38,7 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
         super.onViewCreated(view, savedInstanceState)
         val contact = args.contact
 
-        with (binding) {
+        with(binding) {
             infoContactAddress.text = contact.address
             infoContactDisplayName.text = contact.firstName + " " + contact.lastName
             infoContactEmail.text = contact.email
@@ -53,7 +51,7 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
 
             infoContactDeleteButton.setOnClickListener {
                 viewModel.deleteContact(contact)
-                Snackbar.make(view,"Contact is deleted", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view, "Contact is deleted", Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_infoContactFragment_to_listContactFragment)
             }
 
@@ -61,7 +59,10 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
                 val bundle = Bundle().apply {
                     putSerializable("info_contact", contact)
                 }
-                findNavController().navigate(R.id.action_infoContactFragment_to_addContactFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_infoContactFragment_to_addContactFragment,
+                    bundle
+                )
             }
 
             infoContactCallButton.setOnClickListener {
@@ -78,17 +79,21 @@ class InfoContactFragment : Fragment(R.layout.fragment_info_contact) {
         }
     }
 
-    private fun call(phoneNumber : String) {
-        if (ContextCompat.checkSelfPermission(activity!!, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.CALL_PHONE),
-                0)
+    private fun call(phoneNumber: String) {
+        if (ContextCompat.checkSelfPermission(
+                activity!!,
+                android.Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity!!, arrayOf(android.Manifest.permission.CALL_PHONE),
+                0
+            )
         } else {
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = Uri.parse("tel:$phoneNumber")
             startActivity(intent)
         }
     }
-
-
 
 }

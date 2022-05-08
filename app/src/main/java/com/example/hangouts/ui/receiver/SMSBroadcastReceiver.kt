@@ -1,15 +1,13 @@
-package com.example.hangouts.ui
+package com.example.hangouts.ui.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.provider.Telephony
-import android.util.Log
 import com.example.hangouts.data.repository.ContactRepositoryImpl
 import com.example.hangouts.data.repository.MessageRepositoryImpl
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.domain.models.Message
-import com.example.hangouts.ui.adapters.SMSAdapter
 import kotlinx.coroutines.*
 import java.util.*
 

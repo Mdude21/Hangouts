@@ -1,12 +1,11 @@
 package com.example.hangouts.data.repository
 
 import com.example.hangouts.data.DataBase
-import com.example.hangouts.data.data_source.ContactDao
 import com.example.hangouts.domain.models.Contact
 import com.example.hangouts.domain.repository.ContactRepository
 import kotlinx.coroutines.flow.Flow
 
-class ContactRepositoryImpl() : ContactRepository{
+class ContactRepositoryImpl() : ContactRepository {
 
     private val dao = DataBase.instance.ContactDao()
 

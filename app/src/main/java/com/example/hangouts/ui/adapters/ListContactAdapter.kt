@@ -14,7 +14,7 @@ import com.example.hangouts.domain.models.Contact
 class ListContactAdapter() :
     RecyclerView.Adapter<ListContactAdapter.ContactViewHolder>() {
 
-    inner class ContactViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<Contact>() {
         override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
@@ -52,7 +52,7 @@ class ListContactAdapter() :
             if (contact.avatar != null)
                 itemAvatar.setImageURI(Uri.parse(contact.avatar))
 
-            setOnClickListener{
+            setOnClickListener {
                 onItemClickListener?.let { it(contact) }
             }
         }

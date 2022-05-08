@@ -2,18 +2,12 @@ package com.example.hangouts.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.format.DateUtils
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hangouts.R
 import com.example.hangouts.databinding.ItemInputSmsBinding
 import com.example.hangouts.databinding.ItemOutputSmsBinding
 import com.example.hangouts.domain.models.Message
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val VIEW_TYPE_MY_MESSAGE = 1
 private const val VIEW_TYPE_OTHER_MESSAGE = 2
@@ -22,12 +16,14 @@ class SMSAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewH
 
     private var messages = mutableListOf<Message>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addMessage(message: Message) {
         messages.add(message)
         notifyDataSetChanged()
     }
 
-    fun addList(newMessages: List<Message>){
+    @SuppressLint("NotifyDataSetChanged")
+    fun addList(newMessages: List<Message>) {
         messages = newMessages as MutableList<Message>
         notifyDataSetChanged()
     }
@@ -76,7 +72,8 @@ class MyMessageViewHolder(private val binding: ItemInputSmsBinding) :
 
     fun bind(message: Message) {
         binding.txtMyMessage.text = message.message
-        binding.txtMyMessageTime.text = com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
+        binding.txtMyMessageTime.text =
+            com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
     }
 }
 
@@ -86,7 +83,8 @@ class OtherMessageViewHolder(private val binding: ItemOutputSmsBinding) :
     fun bind(message: Message) {
         with(binding) {
             txtOtherMessage.text = message.message
-            txtOtherMessageTime.text = com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
+            txtOtherMessageTime.text =
+                com.example.hangouts.utils.DateUtils.fromMillisToTimeString(message.time)
             txtOtherUser.text = message.user
         }
     }

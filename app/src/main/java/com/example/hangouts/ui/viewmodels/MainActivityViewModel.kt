@@ -10,7 +10,7 @@ class MainActivityViewModel : ViewModel() {
 
     val repository = ContactRepositoryImpl()
 
-    fun addContactList(contact : Contact) {
+    fun addContactList(contact: Contact) {
         viewModelScope.launch {
             repository.insertContact(contact)
         }

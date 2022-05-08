@@ -16,6 +16,4 @@ class MessageRepositoryImpl : MessageRepository {
     override suspend fun addMessage(message: Message) {
         dao.insertMessage(message)
     }
-
-
 }

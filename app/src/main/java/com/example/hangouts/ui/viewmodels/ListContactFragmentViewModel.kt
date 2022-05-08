@@ -9,7 +9,7 @@ import com.example.hangouts.domain.models.Contact
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ListContactFragmentViewModel : ViewModel(){
+class ListContactFragmentViewModel : ViewModel() {
 
     private val repository = ContactRepositoryImpl()
 
@@ -20,18 +20,9 @@ class ListContactFragmentViewModel : ViewModel(){
 
     fun getContactsFromDb() {
         viewModelScope.launch {
-//            contactListLiveData.postValue(repository.getContacts())
             repository.getContacts().collect {
                 contactListLiveData.postValue(it)
             }
         }
     }
-
-    fun addContactFromContactList(contact : Contact) {
-        viewModelScope.launch {
-            repository.insertContact(contact)
-        }
-    }
-
-
 }

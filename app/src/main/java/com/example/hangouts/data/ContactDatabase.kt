@@ -14,7 +14,7 @@ import com.example.hangouts.domain.models.Message
     ], version = ContactDatabase.DB_VERSION
 )
 
-abstract class ContactDatabase : RoomDatabase(){
+abstract class ContactDatabase : RoomDatabase() {
     abstract fun ContactDao(): ContactDao
     abstract fun MessageDao(): MessageDao
 

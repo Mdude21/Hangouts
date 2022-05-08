@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        tools:text="John Doe"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="John Doe" />
 
     <TextView
         android:id="@+id/txtOtherMessage"
@@ -27,19 +27,19 @@
         android:elevation="5dp"
         android:maxWidth="240dp"
         android:padding="15dp"
-        tools:text="Hi, John's message"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOtherUser" />
+        app:layout_constraintTop_toBottomOf="@+id/txtOtherUser"
+        tools:text="Hi, John's message" />
 
     <TextView
         android:id="@+id/txtOtherMessageTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        tools:text="12:00 PM"
         android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtOtherMessage"
-        app:layout_constraintLeft_toRightOf="@+id/txtOtherMessage" />
+        app:layout_constraintLeft_toRightOf="@+id/txtOtherMessage"
+        tools:text="12:00 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
